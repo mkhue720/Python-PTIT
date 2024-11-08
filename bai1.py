@@ -1,4 +1,3 @@
-#IR
 from math import sqrt
 
 class Point:
@@ -10,8 +9,8 @@ class Point:
         dx = self.x - other.x
         dy = self.y - other.y
         return sqrt(dx * dx + dy * dy)
-
-class Triangle:
+    
+class Tamgiac:
     def __init__(self, p1, p2, p3):
         self.p1 = p1
         self.p2 = p2
@@ -23,12 +22,12 @@ class Triangle:
         c = self.p1.distance(self.p3)
         return a + b > c and a + c > b and b + c > a
 
-    def chu_vi(self):
+    def dien_tich(self):
         a = self.p1.distance(self.p2)
         b = self.p2.distance(self.p3)
         c = self.p1.distance(self.p3)
-        return "{:.3f}".format(a + b + c)
-
+        return "{:.4f}".format(sqrt((a + b + c) * (a + b - c) * (a + c - b) * (b + c - a)) / 4)
+    
 if __name__ == '__main__':
     t = int(input())
     res = []
@@ -37,9 +36,9 @@ if __name__ == '__main__':
         p1 = Point(x1, y1)
         p2 = Point(x2, y2)
         p3 = Point(x3, y3)       
-        triangle = Triangle(p1, p2, p3)       
+        triangle = Tamgiac(p1, p2, p3)       
         if triangle.check():
-            res.append(triangle.chu_vi())
+            res.append(triangle.dien_tich())
         else:
             res.append("INVALID")
     for result in res:
